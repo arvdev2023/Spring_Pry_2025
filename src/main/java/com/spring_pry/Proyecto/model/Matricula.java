@@ -17,6 +17,7 @@ public class Matricula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMatricula;
+
     private LocalDateTime fechaMatricula;
 
     @ManyToOne
