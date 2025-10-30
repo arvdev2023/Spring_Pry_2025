@@ -1,4 +1,6 @@
 package com.spring_pry.Proyecto.service;
 
-public interface IEstudianteService {
+import com.spring_pry.Proyecto.model.Estudiante;
+
+public interface IEstudianteService extends  ICRUD<Estudiante,Integer>{
 }
