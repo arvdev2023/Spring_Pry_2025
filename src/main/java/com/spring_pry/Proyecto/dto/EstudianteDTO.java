@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EstudianteDTO {
     private Integer idEstudiante;
-    private String nombre;
+    private String nombres;
     private String apellidos;
     private String DNI;
     private Integer edad;
