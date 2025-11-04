@@ -1,5 +1,7 @@
 package com.spring_pry.Proyecto.controller;
 
+import com.spring_pry.Proyecto.data.RequestWrapper;
+import com.spring_pry.Proyecto.data.ResponseWrapper;
 import com.spring_pry.Proyecto.dto.EstudianteDTO;
 import com.spring_pry.Proyecto.model.Estudiante;
 import com.spring_pry.Proyecto.service.IEstudianteService;
@@ -20,27 +22,35 @@ public class EstudianteController {
 
 
     private final ModelMapper modelMapper= new ModelMapper();
+    private ResponseWrapper _response;
 
-    @GetMapping
-    public ResponseEntity<List<Estudiante>> findAll() throws Exception{
+    @GetMapping("findall")
+    public ResponseEntity<ResponseWrapper> findAll() throws Exception{
+        _response=new ResponseWrapper();
         List<Estudiante> list= service.findAll();
-        return ResponseEntity.ok(list);
+        _response.setEstudianteList(list);
+        return ResponseEntity.ok(_response);
     }
     @GetMapping("findbyid/{id}")
-    public ResponseEntity<Estudiante> findById(@PathVariable Integer id) throws Exception {
+    public ResponseEntity<ResponseWrapper> findById(@PathVariable Integer id) throws Exception {
+        _response=new ResponseWrapper();
         Estudiante obj = service.findById(id);
-
-        return ResponseEntity.ok(obj);
+        _response.setEstudiante(obj);
+        return ResponseEntity.ok(_response);
     }
     @PostMapping("create")
-    public ResponseEntity<Estudiante> save(@RequestBody EstudianteDTO estudianteDto) throws Exception{
-        Estudiante obj=service.save(_convertToEntity(estudianteDto));
-        return ResponseEntity.ok(obj);
+    public ResponseEntity<ResponseWrapper> save(@RequestBody RequestWrapper request) throws Exception{
+        _response=new ResponseWrapper();
+        Estudiante obj=service.save(_convertToEntity(request.getEstudianteDTO()));
+        _response.setEstudiante(obj);
+        return ResponseEntity.ok(_response);
     }
     @PutMapping("update/{id}")
-    public ResponseEntity<Estudiante> update(@PathVariable Integer id,@RequestBody EstudianteDTO estudianteDTO) throws Exception{
-        Estudiante obj=service.update(id,_convertToEntity(estudianteDTO));
-        return ResponseEntity.ok(obj);
+    public ResponseEntity<ResponseWrapper> update(@PathVariable Integer id,@RequestBody RequestWrapper request) throws Exception{
+        _response=new ResponseWrapper();
+        Estudiante obj=service.update(id,_convertToEntity(request.getEstudianteDTO()));
+        _response.setEstudiante(obj);
+        return ResponseEntity.ok(_response);
     }
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id) throws Exception {

@@ -1,5 +1,6 @@
 package com.spring_pry.Proyecto.service.impl;
 
+import com.spring_pry.Proyecto.exception.ModelNotFoundException;
 import com.spring_pry.Proyecto.repo.IGenericRepo;
 import com.spring_pry.Proyecto.service.ICRUD;
 
@@ -33,7 +34,7 @@ public abstract class CRUDImpl<T,ID> implements ICRUD<T,ID> {
 
     @Override
     public T findById(ID id) throws Exception {
-        return getRepo().findById(id).orElse(null);
+        return getRepo().findById(id).orElseThrow(()-> new ModelNotFoundException("Elemento no encontrado!!"));
     }
 
     @Override
