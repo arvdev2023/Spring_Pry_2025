@@ -1,6 +1,7 @@
 package com.spring_pry.Proyecto.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class Matricula {
 
     private boolean estado;
 
-    @OneToMany(mappedBy = "matricula", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "matricula",cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<DetalleMatricula> detalleMatriculaList;
 }

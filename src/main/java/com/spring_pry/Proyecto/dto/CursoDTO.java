@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class CursoDTO {
     private Integer idCurso;
     private String nombre;
-    private String sigla;
+    private String siglas;
     private boolean estado;
 }

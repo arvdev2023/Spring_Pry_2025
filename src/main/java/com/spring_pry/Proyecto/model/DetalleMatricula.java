@@ -1,5 +1,6 @@
 package com.spring_pry.Proyecto.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class DetalleMatricula {
 
     @ManyToOne
     @JoinColumn(name = "id_matricula", nullable = false, foreignKey = @ForeignKey(name = "fk_matricula_detalle_matricula"))
+    @JsonBackReference
     private Matricula matricula;
 
     @Column(length = 200)
