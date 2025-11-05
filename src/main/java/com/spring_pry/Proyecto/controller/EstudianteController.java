@@ -31,6 +31,20 @@ public class EstudianteController {
         _response.setEstudianteList(list);
         return ResponseEntity.ok(_response);
     }
+    @GetMapping("listmenores")
+    public ResponseEntity<ResponseWrapper> listarMenores() throws Exception{
+        _response=new ResponseWrapper();
+        List<Estudiante> list= service.listarMenores();
+        _response.setEstudianteList(list);
+        return ResponseEntity.ok(_response);
+    }
+    @GetMapping("listbyagedesc")
+    public ResponseEntity<ResponseWrapper> listByAgeDesc() throws Exception{
+        _response=new ResponseWrapper();
+        List<Estudiante> list= service.listByAgeDesc();
+        _response.setEstudianteList(list);
+        return ResponseEntity.ok(_response);
+    }
     @GetMapping("findbyid/{id}")
     public ResponseEntity<ResponseWrapper> findById(@PathVariable Integer id) throws Exception {
         _response=new ResponseWrapper();
