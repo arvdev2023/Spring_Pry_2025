@@ -2,6 +2,7 @@ package com.spring_pry.Proyecto.model;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,5 +30,6 @@ public class Matricula {
 
     @OneToMany(mappedBy = "matricula",cascade = CascadeType.ALL)
     @JsonManagedReference
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<DetalleMatricula> detalleMatriculaList;
 }
