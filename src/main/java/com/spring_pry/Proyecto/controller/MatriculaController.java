@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("proyecto/matricula")
@@ -39,6 +40,12 @@ public class MatriculaController {
         Matricula obj = service.findById(id);
         _response.setMatricula(obj);
         return ResponseEntity.ok(_response);
+    }
+    @GetMapping("getSubjectByEstudiante")
+    public ResponseEntity<Map<String,List<String>>> getSubjectByEstudiante() throws Exception {
+        //Map<String,List<String>> obj = service.getSubjectByEstudiante();
+        Map<String,List<String>> list=service.getSubjectByEstudiante();
+        return ResponseEntity.ok(list);
     }
     @PostMapping("create")
     public ResponseEntity<ResponseWrapper> save(@RequestBody RequestWrapper request) throws Exception{

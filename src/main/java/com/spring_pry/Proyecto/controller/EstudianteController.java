@@ -5,10 +5,8 @@ import com.spring_pry.Proyecto.data.ResponseWrapper;
 import com.spring_pry.Proyecto.dto.EstudianteDTO;
 import com.spring_pry.Proyecto.model.Estudiante;
 import com.spring_pry.Proyecto.service.IEstudianteService;
-import jdk.jfr.Category;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

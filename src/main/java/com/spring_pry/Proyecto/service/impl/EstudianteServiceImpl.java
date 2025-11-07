@@ -22,10 +22,10 @@ public class EstudianteServiceImpl extends CRUDImpl<Estudiante,Integer> implemen
     }
 
     public List<Estudiante> listarMenores(){
-        return repo.findAll().stream().filter(estudiante -> estudiante.getEdad()<=24).collect(Collectors.toList());
+        return repo.findAll().stream().filter(estudiante -> estudiante.getEdad()<=24).toList();
     }
 
     public List<Estudiante> listByAgeDesc(){
-        return repo.findAll().stream().sorted(Comparator.comparing(Estudiante::getEdad).reversed()).collect(Collectors.toList());
+        return repo.findAll().stream().sorted(Comparator.comparing(Estudiante::getEdad).reversed()).toList();
     }
 }
