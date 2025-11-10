@@ -8,6 +8,7 @@ import com.spring_pry.Proyecto.dto.MatriculaDTO;
 import com.spring_pry.Proyecto.model.Estudiante;
 import com.spring_pry.Proyecto.model.Matricula;
 import com.spring_pry.Proyecto.service.IMatriculaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -43,12 +44,11 @@ public class MatriculaController {
     }
     @GetMapping("getSubjectByEstudiante")
     public ResponseEntity<Map<String,List<String>>> getSubjectByEstudiante() throws Exception {
-        //Map<String,List<String>> obj = service.getSubjectByEstudiante();
         Map<String,List<String>> list=service.getSubjectByEstudiante();
         return ResponseEntity.ok(list);
     }
     @PostMapping("create")
-    public ResponseEntity<ResponseWrapper> save(@RequestBody RequestWrapper request) throws Exception{
+    public ResponseEntity<ResponseWrapper> save(@Valid @RequestBody RequestWrapper request) throws Exception{
         _response=new ResponseWrapper();
         Matricula obj=service.save(_convertToEntity(request.getMatriculaDTO()));
         _response.setMatricula(obj);

@@ -2,10 +2,11 @@ package com.spring_pry.Proyecto.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
+
 
 @Data
 @AllArgsConstructor
@@ -20,5 +21,8 @@ public class DetalleMatriculaDto {
     @JsonBackReference
     private MatriculaDTO matricula;
 
+    @NotNull
+    @NotBlank
+    @Size(min = 1, max = 200)
     private String aula;
 }

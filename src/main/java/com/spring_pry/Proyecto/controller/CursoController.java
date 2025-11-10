@@ -6,8 +6,10 @@ import com.spring_pry.Proyecto.dto.CursoDTO;
 import com.spring_pry.Proyecto.model.Curso;
 import com.spring_pry.Proyecto.model.Estudiante;
 import com.spring_pry.Proyecto.service.ICursoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,14 +39,14 @@ public class CursoController {
         return ResponseEntity.ok(_response);
     }
     @PostMapping("create")
-    public ResponseEntity<ResponseWrapper> save(@RequestBody RequestWrapper request) throws Exception{
+    public ResponseEntity<ResponseWrapper> save(@Valid @RequestBody RequestWrapper request) throws Exception{
         _response=new ResponseWrapper();
         Curso obj=service.save(_convertToEntity(request.getCursoDTO()));
         _response.setCurso(obj);
-        return ResponseEntity.ok(_response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(_response);
     }
     @PutMapping("update/{id}")
-    public ResponseEntity<ResponseWrapper> update(@PathVariable Integer id,@RequestBody RequestWrapper request) throws Exception{
+    public ResponseEntity<ResponseWrapper> update(@PathVariable Integer id,@Valid @RequestBody RequestWrapper request) throws Exception{
         _response=new ResponseWrapper();
         Curso obj=service.update(id,_convertToEntity(request.getCursoDTO()));
         _response.setCurso(obj);
